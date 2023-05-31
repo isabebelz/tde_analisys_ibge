@@ -28,6 +28,12 @@ int main()
     int qtd_conc_n_t[2];
     int qtd_n_conc[2];
 
+    printf("Todos os dados aqui apresentados são referentes ao ano de 2014 e foram fornecidos pelo IBGE.\n\n");
+    printf("OBSERVAÇÃO: Os dados referentes ao item 1 e ao item 2 não possuem ligação entre si.\n\n");
+
+    printf("Pressione 'Enter' para começar...\n");
+    getchar();
+
     leitura_dados_regioes(regioes, conc_masc, conc_fem);
 
     leitura_dados_genero(genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
@@ -110,24 +116,25 @@ void menu_principal(char regioes[5][100], int conc_masc[5], int conc_fem[5], cha
 
     system("cls");
 
-        int i;
+    /*int i;
     for(i=0; i < 5; i++){
         printf("%s %d %d\n", regioes[i], conc_masc[i], conc_fem[i]);
     }
 
     for(i=0; i < 2; i++){
         printf("%s %d %d %d\n", genero[i], qtd_conc_t[i], qtd_conc_n_t[i], qtd_n_conc[i]);
-    }
+    }*/
     int escolha = 0;
 
     while (1)
     {
+
         printf("---------------------------------MENU PRINCIPAL-----------------------------------\n");
         printf("         **ANÁLISE DE DADOS SOBRE FORMAÇÃO SUPERIOR TECNOLÓGICA**\n");
         printf("----------------------------------------------------------------------------------\n\n");
 
-        printf("1 - Número de concluintes por região\n");
-        printf("2 - Taxa de conclusão e empregabilidade por gênero\n");
+        printf("1 - Busca por região: Quantidade de estudantes que concluíram seus estudos por região, levando em consideração o gênero.\n");
+        printf("2 - Busca por gênero: Identificação dos concluintes e não concluintes, além da divisão entre os que já trabalharam na área e os que não possuem experiência profissional na área.\n");
         printf("3 - Sair\n");
         scanf("%d", &escolha);
 
@@ -156,7 +163,7 @@ void busca_por_regiao(char regioes[5][100], int conc_masc[5], int conc_fem[5])
 
     do
     {
-        printf("Digite o nome da região na qual deseja visualizar a taxa de concluintes: ");
+        printf("Digite o nome da região na qual deseja visualizar a número de concluintes: ");
         scanf(" %[^\n]", regiao);
 
         int i = 0;
@@ -188,13 +195,14 @@ void busca_por_regiao(char regioes[5][100], int conc_masc[5], int conc_fem[5])
     int escolha, v = 1;
     while (v != 0)
     {
-        printf("--------------------------------------------------------------------\n");
-        printf("**ANÁLISE DE DADOS SOBRE FORMAÇÃO SUPERIOR TECNOLÓGICA POR REGIÃO**\n");
-        printf("--------------------------------------------------------------------\n\n");
+
+        printf("------------------------------------------------------------------------------------\n");
+        printf("       **ANÁLISE DE DADOS SOBRE FORMAÇÃO SUPERIOR TECNOLÓGICA POR REGIÃO**\n");
+        printf("----------------------------------------------------------------------------------\n\n");
 
         printf("Digite o número desejado\n");
-        printf("1 - Taxa e número de concluintes do gênero masculino da região %s\n", regiao);
-        printf("2 - Taxa e número de concluintes do gênero feminino da região %s\n", regiao);
+        printf("1 - Número de concluintes do gênero masculino da região %s\n", regiao);
+        printf("2 - Número de concluintes do gênero feminino da região %s\n", regiao);
         printf("3 - Escolher uma nova região\n");
         printf("4 - Sair\n");
         scanf("%d", &escolha);
@@ -481,9 +489,10 @@ void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2]
     int escolha = 0, v = 1;
     while (v != 0)   // Infinity loop
     {
-        printf("------------------------------------------------------------------------------------------\n");
-        printf("  **ANÁLISE DE DADOS SOBRE EMPREGABILIDADE E FORMAÇÃO SUPERIOR TECNOLÓGICA POR GÊNERO**\n");
-        printf("-----------------------------------------------------------------------------------------\n\n");
+
+        printf("-------------------------------------------------------------------------------------------\n");
+        printf("    **ANÁLISE DE DADOS SOBRE EMPREGABILIDADE E FORMAÇÃO SUPERIOR TECNOLÓGICA POR GÊNERO**\n");
+        printf("-------------------------------------------------------------------------------------------\n\n");
 
         printf("Digite o número desejado\n");
         printf("1 - Número de concluintes que trabalhavam ou já trabalharam na área\n");
@@ -516,7 +525,6 @@ void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2]
 }
 void conc_t(char genero[2][15], int qtd_conc_t[2])
 {
-    system("cls");
     char genero_escolhido[15];
     int encontrado = 0;
 
@@ -546,7 +554,7 @@ void conc_t(char genero[2][15], int qtd_conc_t[2])
     }
     while(!encontrado);
 
-    char escolha_salvar[1];
+    char escolha_salvar[2];
     int count = 0, aux = 0;
 
     int i = 0;
@@ -554,7 +562,7 @@ void conc_t(char genero[2][15], int qtd_conc_t[2])
     {
         if (strcasecmp(genero[i], genero_escolhido) == 0)
         {
-            printf("%s %d\n", genero[i], qtd_conc_t[i]);
+            printf("Número de graduados em curso superior de tecnologia do sexo %s que trabalhavam ou já trabalharam na área: %d\n", genero[i], qtd_conc_t[i]);
             aux = i;
             count++;
         }
@@ -618,7 +626,6 @@ void conc_t(char genero[2][15], int qtd_conc_t[2])
 }
 void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
 {
-    system("cls");
     char genero_escolhido[15];
     int encontrado = 0;
 
@@ -648,7 +655,7 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
     }
     while(!encontrado);
 
-    char escolha_salvar[15];
+    char escolha_salvar[2];
     int count = 0, aux = 0;
 
     int i = 0;
@@ -656,7 +663,7 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
     {
         if (strcasecmp(genero[i], genero_escolhido) == 0)
         {
-            printf("%s %d\n", genero[i], qtd_conc_n_t[i]);
+            printf("Número de graduados em curso superior de tecnologia do sexo %s que nunca trabalharam na área: %d\n", genero[i], qtd_conc_n_t[i]);
             aux = i;
             count++;
         }
@@ -684,7 +691,7 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
         FILE *arquivo_genero;
 
         arquivo_genero = fopen("conc_n_trab_f.csv", "w");
-        fprintf(arquivo_genero, "Dado referente ao ano de 2014 do número de concluintes do sexo feminino que nunca trabalharam na área: %d\n", qtd_conc_n_t[aux]);
+        fprintf(arquivo_genero, "Número de concluintes do sexo feminino que nunca trabalharam na área: %d\n", qtd_conc_n_t[aux]);
 
         fclose(arquivo_genero);
 
@@ -701,6 +708,7 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
             arquivo_genero = fopen("conc_n_trab_m.csv", "w");
             fprintf(arquivo_genero, "Dado referente ao ano de 2014 do número de concluintes do sexo masculino que nunca trabalharam na área: %d\n", qtd_conc_n_t[aux]);
 
+
             fclose(arquivo_genero);
 
             system("cls");
@@ -714,10 +722,10 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
         system("cls");
         printf("\nRetornando ao menu.. \n\n\n");
     }
+
 }
 void n_conc(char genero[2][15], int qtd_n_conc[2])
 {
-    system("cls");
     char genero_escolhido[15];
     int encontrado = 0;
 
@@ -747,7 +755,7 @@ void n_conc(char genero[2][15], int qtd_n_conc[2])
     }
     while(!encontrado);
 
-    char escolha_salvar[15];
+    char escolha_salvar[2];
     int count = 0, aux = 0;
 
     int i = 0;
@@ -755,7 +763,7 @@ void n_conc(char genero[2][15], int qtd_n_conc[2])
     {
         if (strcasecmp(genero[i], genero_escolhido) == 0)
         {
-            printf("%s %d\n", genero[i], qtd_n_conc[i]);
+            printf("Número de pessoas do sexo %s que não concluiram o curso: %d\n", genero[i], qtd_n_conc[i]);
             aux = i;
             count++;
         }

@@ -32,15 +32,6 @@ int main()
 
     leitura_dados_genero(genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
 
-    /*int i;
-    for(i=0; i < 5; i++){
-        printf("%s %d %d\n", regioes[i], conc_masc[i], conc_fem[i]);
-    }
-
-    for(i=0; i < 2; i++){
-        printf("%s %d %d %d\n", genero[i], qtd_conc_t[i], qtd_conc_n_t[i], qtd_n_conc[i]);
-    }*/
-
     menu_principal(regioes, conc_masc, conc_fem, genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
 
     return 0;
@@ -112,7 +103,21 @@ void leitura_dados_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_
 }
 void menu_principal(char regioes[5][100], int conc_masc[5], int conc_fem[5], char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2], int qtd_n_conc[2])
 {
+
+    leitura_dados_regioes(regioes, conc_masc, conc_fem);
+
+    leitura_dados_genero(genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
+
     system("cls");
+
+        int i;
+    for(i=0; i < 5; i++){
+        printf("%s %d %d\n", regioes[i], conc_masc[i], conc_fem[i]);
+    }
+
+    for(i=0; i < 2; i++){
+        printf("%s %d %d %d\n", genero[i], qtd_conc_t[i], qtd_conc_n_t[i], qtd_n_conc[i]);
+    }
     int escolha = 0;
 
     while (1)
@@ -138,6 +143,7 @@ void menu_principal(char regioes[5][100], int conc_masc[5], int conc_fem[5], cha
             exit(0);
         default:
             printf("Valor inválido. Escolha valores entre 1 e 3 \n");
+            break;
         }
     }
 
@@ -467,6 +473,10 @@ void taxa_fem(char regioes[5][100], int conc_fem[5], char regiao[15])
 void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2], int qtd_n_conc[2])
 {
 
+    char regioes[5][100];
+    int conc_masc[5];
+    int conc_fem[5];
+
     system("cls");
     int escolha = 0, v = 1;
     while (v != 0)   // Infinity loop
@@ -495,7 +505,7 @@ void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2]
             break;
         case 4:
             v = 0;
-            menu_principal(genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
+            menu_principal(regioes, conc_masc, conc_fem, genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
             break;
         default:
             printf("Valor inválido. Escolha valores entre 1 e 4.\n");
@@ -707,7 +717,7 @@ void conc_n_t(char genero[2][15], int qtd_conc_n_t[2])
 }
 void n_conc(char genero[2][15], int qtd_n_conc[2])
 {
-    system("cls");ss
+    system("cls");
     char genero_escolhido[15];
     int encontrado = 0;
 
@@ -804,4 +814,3 @@ void n_conc(char genero[2][15], int qtd_n_conc[2])
         printf("\nRetornando ao menu.. \n\n\n");
     }
 }
-

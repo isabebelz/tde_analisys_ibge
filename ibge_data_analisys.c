@@ -17,7 +17,7 @@ void conc_t(char genero[2][15], int qtd_conc_t[2]);
 
 int main()
 {
-    setlocale(LC_ALL, "portuguese");
+    setlocale(LC_ALL, "Portuguese");
 
     // values from dataset:
     char regioes[5][100];
@@ -32,6 +32,12 @@ int main()
     printf("OBSERVAÇÃO: Os dados referentes ao item 1 e ao item 2 não possuem ligação entre si.\n\n");
 
     printf("Pressione 'Enter' para começar...\n");
+
+    /*Quando o programa chega na chamada getchar(), ele pausa a execução e aguarda até que o usuário pressione a tecla
+     "Enter". Isso acontece porque a função getchar() lê um caractere do fluxo de entrada padrão (nesse caso, o teclado)
+    e retorna quando um caractere é digitado. Ao pressionar "Enter", é gerado um caractere de nova linha ('\n'), que é o que a função getchar() lê.
+    Assim que o caractere é lido, o programa continua sua execução normalmente.*/
+
     getchar();
 
     leitura_dados_regioes(regioes, conc_masc, conc_fem);
@@ -116,16 +122,10 @@ void menu_principal(char regioes[5][100], int conc_masc[5], int conc_fem[5], cha
 
     system("cls");
 
-    /*int i;
-    for(i=0; i < 5; i++){
-        printf("%s %d %d\n", regioes[i], conc_masc[i], conc_fem[i]);
-    }
-
-    for(i=0; i < 2; i++){
-        printf("%s %d %d %d\n", genero[i], qtd_conc_t[i], qtd_conc_n_t[i], qtd_n_conc[i]);
-    }*/
     int escolha = 0;
 
+     /*O valor "1" passado como parâmetro no while é uma expressão booleana que indica uma condição de repetição infinita. No contexto apresentado,
+        o while (1) cria um loop que continuará sendo executado indefinidamente, a menos que uma instrução de saída seja encontrada dentro do loop*/
     while (1)
     {
 
@@ -149,6 +149,7 @@ void menu_principal(char regioes[5][100], int conc_masc[5], int conc_fem[5], cha
         case 3:
             exit(0);
         default:
+            system("cls");
             printf("Valor inválido. Escolha valores entre 1 e 3 \n");
             break;
         }
@@ -178,7 +179,9 @@ void busca_por_regiao(char regioes[5][100], int conc_masc[5], int conc_fem[5])
 
         system("cls");
 
-
+        /*o operador ! é usado para negar uma expressão booleana, !encontrado significa "não encontrado" ou "não verdadeiro".
+        Se o valor da variável encontrado for zero (falso), !encontrado será avaliado como verdadeiro (diferente de zero), e o loop continuará a ser executado.
+        No entanto, se encontrado for diferente de zero (verdadeiro), !encontrado será avaliado como falso (zero), e o loop será interrompido. */
         if(!encontrado)
         {
             printf("Nao foram encontrados dados para a regiao especificada.\nAs regiões conhecidas são:\nNorte\nNordeste\nCentro-Oeste\nSudeste\nSul\n");
@@ -192,8 +195,8 @@ void busca_por_regiao(char regioes[5][100], int conc_masc[5], int conc_fem[5])
     int qtd_conc_n_t[2];
     int qtd_n_conc[2];
 
-    int escolha, v = 1;
-    while (v != 0)
+    int escolha;
+    while (1)
     {
 
         printf("------------------------------------------------------------------------------------\n");
@@ -219,10 +222,10 @@ void busca_por_regiao(char regioes[5][100], int conc_masc[5], int conc_fem[5])
             busca_por_regiao(regioes, conc_masc, conc_fem);
             break;
         case 4:
-            v = 0;
             menu_principal(regioes, conc_masc, conc_fem, genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
             break;
         default:
+            system("cls");
             printf("Valor inválido. Escolha valores entre 1 e 4 \n");
             break;
         }
@@ -486,8 +489,8 @@ void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2]
     int conc_fem[5];
 
     system("cls");
-    int escolha = 0, v = 1;
-    while (v != 0)   // Infinity loop
+    int escolha = 0;
+    while (1)   // Infinity loop
     {
 
         printf("-------------------------------------------------------------------------------------------\n");
@@ -513,10 +516,10 @@ void busca_por_genero(char genero[2][15], int qtd_conc_t[2], int qtd_conc_n_t[2]
             n_conc(genero, qtd_n_conc);
             break;
         case 4:
-            v = 0;
             menu_principal(regioes, conc_masc, conc_fem, genero, qtd_conc_t, qtd_conc_n_t, qtd_n_conc);
             break;
         default:
+            system("cls");
             printf("Valor inválido. Escolha valores entre 1 e 4.\n");
             break;
         }
